@@ -7,6 +7,12 @@ const argv = require('yargs')
         describe: 'x marks the spot',
         type: 'number'
     })
+    .option('l', {
+        alias: 'list',
+        default: false,
+        describe: 'show table in console',
+        type: 'boolean'
+    })
     .check((argv, options) => {
         const filePaths = argv._;
         if (isNaN(argv.b)) {
@@ -37,10 +43,10 @@ const argv = require('yargs')
 // console.log(argv);
 console.log('base: yargs', argv.base);
 
-
 // const base = 5;
 
-// createTable(base)
-//     .then(nameFile => console.log(nameFile, 'created'))
-//     .catch(err => console.log(err));
+// node app -b 8 -l
+createTable(argv.base, argv.l)
+    .then(nameFile => console.log(nameFile, 'created'))
+    .catch(err => console.log(err));
 

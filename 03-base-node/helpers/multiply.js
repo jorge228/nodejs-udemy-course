@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const createTable = async (base = 5) => {
+const createTable = async (base = 5, list) => {
 
     try {
         let text = '';
@@ -8,8 +8,13 @@ const createTable = async (base = 5) => {
         for (let i = 0; i <= 10; i++) {
             text += `${base} x ${i} = ${base * i}\n`;
         }
+
+        if (list) console.log(text);
+
         fs.writeFileSync(`tabla-${base}.txt`, text);
+
         return `tabla-${base}.txt`;
+
     } catch (err) {
         throw err;
     }
