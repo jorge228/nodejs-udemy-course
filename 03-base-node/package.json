@@ -13,6 +13,7 @@
   "author": "Jorge Lozano",
   "license": "MIT",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "yargs": "^16.2.0"
   }
 }
