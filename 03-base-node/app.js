@@ -15,7 +15,8 @@ const argv = require('./config/yargs');
 // const base = 5;
 
 // node app -b 8 -l
-createTable(argv.base, argv.l)
+// node app -b 9 -l -u 15
+createTable(argv.base, argv.l, argv.u)
     .then(nameFile => console.log(nameFile, 'created'))
     .catch(err => console.log(err));
 

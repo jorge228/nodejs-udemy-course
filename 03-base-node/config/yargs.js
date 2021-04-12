@@ -12,6 +12,13 @@ const argv = require('yargs')
         describe: 'Show table in console',
         type: 'boolean'
     })
+    .option('u', {
+        alias: 'until',
+        demandOption: true,
+        default: 10,
+        describe: 'Limit multiply table',
+        type: 'number'
+    })
     .check((argv, options) => {
         const filePaths = argv._;
         if (isNaN(argv.b)) {

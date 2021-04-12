@@ -1,18 +1,19 @@
 const fs = require('fs');
 const colors = require('colors');
 
-const createTable = async (base = 5, list) => {
+const createTable = async (base = 5, list, until) => {
 
     try {
         let text = '';
 
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= until; i++) {
+            // example in txt: [31m9[39m x 2 = 18
             text += `${colors.red(base)} x ${i} = ${base * i}\n`;
         }
 
         if (list) console.log(text.green);
 
-        fs.writeFileSync(`tabla-${base}.txt`, text);
+        fs.writeFileSync(`./print/tabla-${base}.txt`, text);
 
         return `tabla-${base}.txt`;
 
