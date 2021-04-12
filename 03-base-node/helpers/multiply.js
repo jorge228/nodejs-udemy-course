@@ -1,4 +1,5 @@
 const fs = require('fs');
+const colors = require('colors');
 
 const createTable = async (base = 5, list) => {
 
@@ -6,10 +7,10 @@ const createTable = async (base = 5, list) => {
         let text = '';
 
         for (let i = 0; i <= 10; i++) {
-            text += `${base} x ${i} = ${base * i}\n`;
+            text += `${colors.red(base)} x ${i} = ${base * i}\n`;
         }
 
-        if (list) console.log(text);
+        if (list) console.log(text.green);
 
         fs.writeFileSync(`tabla-${base}.txt`, text);
 
