@@ -1,2 +1,6 @@
+#MacOS
 .DS_Store
-/03-base-node/node_modules
+
+#node_modules
+03-base-node/node_modules
+04-app-tasks/node_modules
