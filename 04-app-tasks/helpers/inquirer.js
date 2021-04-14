@@ -5,7 +5,7 @@ const menuOpts = [
     {
         type: 'list',
         name: 'option',
-        message: '¿Qué desea haer?',
+        message: '¿Qué desea hacer?',
         choices: [
             {
                 value: '1',
@@ -56,14 +56,33 @@ const pause = async () => {
         {
             type: 'input',
             name: 'enter',
-            message: `Presione ${'ENTER'.green} para continuar.`
+            message: `Presione ${'intro'.green} para continuar.`
         }
     ];
 
     await inquirer.prompt(question);
 }
 
+const readInput = async (message) => {
+    const question = [
+        {
+            type: 'input',
+            name: 'desc',
+            message,
+            validate(value) {
+                let resp;
+                value.length === 0 ? resp = 'Por favor, ingrese algún valor.' : resp = true;
+                return resp;
+            }
+        }
+    ];
+
+    const { desc } = await inquirer.prompt(question);
+    return desc;
+}
+
 module.exports = {
     inquirerMenu,
-    pause
+    pause,
+    readInput
 }
