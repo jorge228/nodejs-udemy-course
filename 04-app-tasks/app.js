@@ -1,6 +1,7 @@
 require('colors');
 
-const { inquirerMenu, pause, readInput } = require('./helpers/inquirer'); 
+const { inquirerMenu, pause, readInput } = require('./helpers/inquirer');
+const { saveData } = require('./helpers/saveDoc');
 const Tasks = require('./models/tasks');
 // const { showMenu, pause } = require('./helpers/messages');
 
@@ -44,6 +45,8 @@ const main = async () => {
 
                 break;
         }
+
+        // saveData(tasks.listArray);
 
         console.log('\n');
         if (opt !== '0') await pause();
