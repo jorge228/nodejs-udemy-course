@@ -22,10 +22,10 @@ class Tasks {
     }
 
     createList(data = []) {
-        // data.forEach(tarea => {
-        //     this._list[task.id] = task;
-        // });
-        this._list = data;
+        data.forEach(task => {
+            this._list[task.id] = task;
+        });
+        // this._list = data; it doesn't work
     }
 
     printListFormat() {
@@ -72,6 +72,19 @@ class Tasks {
         if (this._list[id]) {
             delete this._list[id];
         }
+    }
+
+    toggleCompleted(ids = []) {
+        ids.forEach(id => {
+            const task = this._list[id];
+            if (!task.completedAt) task.completedAt = new Date().toISOString();
+        });
+
+        this.listArray.forEach(task => {
+            if (!ids.includes(task.id)) {
+                this._list[task.id].completedAt = null;
+            }
+        });
     }
 
 }

@@ -1,6 +1,6 @@
 require('colors');
 
-const { inquirerMenu, pause, readInput, tasksListDelete, confirm } = require('./helpers/inquirer');
+const { inquirerMenu, pause, readInput, tasksListDelete, confirm, showListChecklist } = require('./helpers/inquirer');
 const { saveData, readData } = require('./helpers/saveDoc');
 const Tasks = require('./models/tasks');
 // const { showMenu, pause } = require('./helpers/messages');
@@ -43,7 +43,9 @@ const main = async () => {
                 tasks.printListByState(false);
                 break;
             case '5':
-
+                // completed or pending
+                const ids = await showListChecklist(tasks.listArray);
+                tasks.toggleCompleted(ids);
                 break;
             case '6':
                 // delete tasks
@@ -54,8 +56,8 @@ const main = async () => {
                         tasks.deleteTask(id);
                         console.log('Tarea borrada correctamente.');
                     }
-                    console.log({ok});
-                    console.log({id});
+                    console.log({ ok });
+                    console.log({ id });
                 }
                 break;
             case '0':
