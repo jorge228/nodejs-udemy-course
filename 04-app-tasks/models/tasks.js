@@ -49,6 +49,25 @@ class Tasks {
         });
     }
 
+    printListByState(valueMenu) {
+        console.log();
+        let count = 0;
+        this.listArray.forEach(task => {
+            const { desc, completedAt } = task;
+            const state = (completedAt) ? completedAt.green : 'Pendiente'.red;
+            // print completed
+            if (valueMenu && completedAt) {
+                count++;
+                console.log(`${count} ${desc} :: ${state}`);
+            }
+            // print pending
+            if (!valueMenu && completedAt === null) {
+                count++;
+                console.log(`${count} ${desc} :: ${state}`);
+            }
+        });
+    }
+
 }
 
 module.exports = Tasks;

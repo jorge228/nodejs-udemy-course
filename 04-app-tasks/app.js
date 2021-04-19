@@ -35,10 +35,12 @@ const main = async () => {
                 tasks.printListFormat();
                 break;
             case '3':
-
+                // show completed
+                tasks.printListByState(true);
                 break;
             case '4':
-
+                // show pending
+                tasks.printListByState(false);
                 break;
             case '5':
 
