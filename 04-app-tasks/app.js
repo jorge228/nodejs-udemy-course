@@ -1,7 +1,7 @@
 require('colors');
 
 const { inquirerMenu, pause, readInput } = require('./helpers/inquirer');
-const { saveData } = require('./helpers/saveDoc');
+const { saveData, readData } = require('./helpers/saveDoc');
 const Tasks = require('./models/tasks');
 // const { showMenu, pause } = require('./helpers/messages');
 
@@ -10,6 +10,10 @@ const main = async () => {
 
     const tasks = new Tasks();
     let opt = '';
+
+    const data = readData();
+
+    if (data) tasks.createList(data);
 
     do {
         // opt = await showMenu();
@@ -27,7 +31,8 @@ const main = async () => {
                 break;
             case '2':
                 // show list task
-                console.log(tasks.listArray);
+                // console.log(tasks.listArray);
+                tasks.printListFormat();
                 break;
             case '3':
 
@@ -46,7 +51,7 @@ const main = async () => {
                 break;
         }
 
-        // saveData(tasks.listArray);
+        saveData(tasks.listArray);
 
         console.log('\n');
         if (opt !== '0') await pause();
