@@ -1,8 +1,10 @@
+require('dotenv').config();     // console.log(process.env);
 require('colors');
 const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
 const Search = require('./model/search');
 
 const main = async () => {
+
 
     const search = new Search();
     let opt;
