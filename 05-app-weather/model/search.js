@@ -27,8 +27,13 @@ class Search {
                 params: this.getParams()
             });
             const resp = await instance.get();
-            console.log(resp.data);
-            return [];
+            // console.log(resp.data.features);
+            return resp.data.features.map(place => ({
+                id: place.id,
+                name: place.place_name,
+                lng: place.center[0],
+                lat: place.center[1]
+            }));
         } catch (error) {
             return [];
         }

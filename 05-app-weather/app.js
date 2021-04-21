@@ -1,6 +1,6 @@
 require('dotenv').config();     // console.log(process.env);
 require('colors');
-const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
+const { inquirerMenu, pause, readInput, placesList } = require("./helpers/inquirer");
 const Search = require('./model/search');
 
 const main = async () => {
@@ -17,17 +17,21 @@ const main = async () => {
         switch (opt) {
             case 1:
                 // show message
-                const place = await readInput('Ciudad: ');
-                await search.find(place);
+                const input = await readInput('Ciudad: ');
                 // search places
+                const places = await search.find(input);
                 // select place
+                const idPlaceSelect = await placesList(places);
+                const placeSelect = places.find(x => x.id === idPlaceSelect);
+                const { id, name, lng, lat } = placeSelect;
                 // weather
                 // show results
+                // console.log({ id });
                 console.log('\nInformación de la ciudad\n'.green);
-                console.log('Ciudad: ',);
-                console.log('Latitud: ',);
-                console.log('Longitud: ',);
-                console.log('Temperatura: ',);
+                console.log('Ciudad: ', name);
+                console.log('Latitud: ', lat);
+                console.log('Longitud: ', lng);
+                console.log('Temperatura: ', );
                 console.log('Mínima: ',);
                 console.log('Máxima: ',);
                 break;
