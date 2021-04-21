@@ -12,7 +12,6 @@ const main = async () => {
     do {
 
         opt = await inquirerMenu();
-        console.log({ opt });
 
         switch (opt) {
             case 1:
@@ -25,15 +24,19 @@ const main = async () => {
                 const placeSelect = places.find(x => x.id === idPlaceSelect);
                 const { id, name, lng, lat } = placeSelect;
                 // weather
+                const weather = await search.wheatherPlaceSelect(lat, lng);
+                const { temperature, min, max, desc } = weather;
                 // show results
-                // console.log({ id });
+                console.clear();
                 console.log('\nInformación de la ciudad\n'.green);
-                console.log('Ciudad: ', name);
+                console.log('Ciudad: ', name.green);
                 console.log('Latitud: ', lat);
                 console.log('Longitud: ', lng);
-                console.log('Temperatura: ', );
-                console.log('Mínima: ',);
-                console.log('Máxima: ',);
+                console.log('Temperatura: ', temperature);
+                console.log('Mínima: ', max);
+                console.log('Máxima: ', min);
+                console.log('Descripción: ', desc.green);
+                console.log();
                 break;
         }
 

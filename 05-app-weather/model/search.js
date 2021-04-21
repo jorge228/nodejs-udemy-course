@@ -8,11 +8,18 @@ class Search {
         // TODO: read record if exists
     }
 
-    getParams() {
+    getParamsMapBox() {
         return {
             'access_token': process.env.MAPBOX_KEY,
             'limit': 5,
             'language': 'es'
+        }
+    }
+    getParamsWeather() {
+        return {
+            appid: process.env.OPENWEATHER_KEY,
+            units: 'metric',
+            lang: 'es',
         }
     }
 
@@ -24,7 +31,7 @@ class Search {
             // console.log(res.data);
             const instance = axios.create({
                 baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${word}.json`,
-                params: this.getParams()
+                params: this.getParamsMapBox()
             });
             const resp = await instance.get();
             // console.log(resp.data.features);
@@ -35,7 +42,33 @@ class Search {
                 lat: place.center[1]
             }));
         } catch (error) {
-            return [];
+            console.log('error'.red);
+        }
+
+    }
+
+    async wheatherPlaceSelect(lat, lon) {
+
+        try {
+
+            const instance = axios.create({
+                // api.openweathermap.org/data/2.5/weather?lat=37.47182&lon=-4.43356&appid=aca6c71b14c6bbd2a73080f697c79ff2&units=metric&lang=es
+                baseURL: `https://api.openweathermap.org/data/2.5/weather`,
+                params: { ...this.getParamsWeather(), lat, lon }
+            });
+
+            const resp = await instance.get();
+            const { weather, main } = resp.data;
+
+            return {
+                temperature: main.temp,
+                min: main.temp_min,
+                max: main.temp_max,
+                desc: weather[0].description
+            }
+
+        } catch (error) {
+            console.log('error'.red);
         }
 
     }
