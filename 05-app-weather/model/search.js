@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 class Search {
 
     record = ['España', 'Córdoba', 'Cabra'];
@@ -7,10 +9,15 @@ class Search {
     }
 
     async find(word = '') {
-        // request http
-        console.log({ word });
-        // return places
-        return [];
+
+        try {
+            const res = await axios.get('https://reqres.in/api/users?page=2');
+            console.log(res.data);
+            return [];
+        } catch (error) {
+            return [];
+        }
+
     }
 }
 
