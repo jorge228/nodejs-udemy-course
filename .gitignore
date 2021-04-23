@@ -5,6 +5,8 @@
 03-base-node/node_modules
 04-app-tasks/node_modules
 05-app-weather/node_modules
+06-webserver/node_modules
+07-restserver/node_modules
 
 #env
 05-app-weather/.env
