@@ -7,9 +7,11 @@
 05-app-weather/node_modules
 06-webserver/node_modules
 07-restserver/node_modules
+08-restserver/node_modules
 
 #env
 05-app-weather/.env
+08-restserver/.env
 
 #created files
 #04-app-tasks/db/*
