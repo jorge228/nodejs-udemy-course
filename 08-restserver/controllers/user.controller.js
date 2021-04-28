@@ -24,9 +24,9 @@ const userPost = async (req, res) => {
     user.password = bcrypt.hashSync(password, salt);
 
     // validation
-    if (await User.findOne({ mail })) return res.status(400).json({
-        msg: 'El correo ya está usado'
-    });
+    // if (await User.findOne({ mail })) return res.status(400).json({
+    //     msg: 'El correo ya está usado'
+    // });
 
     await user.save();
     res.status(201).json({
