@@ -18,7 +18,7 @@ const userGet = (req, res = response) => {
 const userPost = async (req, res) => {
     const { name, mail, password, role } = req.body;
     const user = new User({ name, mail, password, role });
-
+    
     // encrypt pass
     const salt = bcrypt.genSaltSync(5);
     user.password = bcrypt.hashSync(password, salt);
@@ -27,7 +27,6 @@ const userPost = async (req, res) => {
     if (await User.findOne({ mail })) return res.status(400).json({
         msg: 'El correo ya está usado'
     });
-
 
     await user.save();
     res.status(201).json({
