@@ -68,6 +68,7 @@ const userPut = async (req, res) => {
 }
 
 const userDelete = async (req, res) => {
+
     const { id } = req.params;
 
     // comes from validate-jwt.js
@@ -75,11 +76,15 @@ const userDelete = async (req, res) => {
 
     // delete user from db
     // const user = await User.findByIdAndDelete(id); 
+
     const user = await User.findByIdAndUpdate(id, { status: false });
+    const userAuthenticated = req.user;
+
     res.json({
         msg: 'delete from API - controller',
         // uid
         user,
+        userAuthenticated
     });
 }
 
