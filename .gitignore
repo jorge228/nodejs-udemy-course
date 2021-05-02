@@ -9,11 +9,13 @@
 07-restserver/node_modules
 08-restserver/node_modules
 09-restserver/node_modules
+11-restserver-google/node_modules
 
 #env
 05-app-weather/.env
 08-restserver/.env
 09-restserver/.env
+11-restserver-google/.env
 
 #created files
 #04-app-tasks/db/*
