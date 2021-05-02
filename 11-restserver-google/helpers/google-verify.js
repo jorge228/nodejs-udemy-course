@@ -12,8 +12,8 @@ const googleVerify = async (idToken) => {
     // const payload = ticket.getPayload();
     // return payload;
     // email:mail for rename as user model
-    const { name, picture, email: mail } = ticket.getPayload();
-    return { name, picture, mail };
+    const { name, picture: img, email: mail } = ticket.getPayload();
+    return { name, img, mail };
 }
 
 module.exports = {

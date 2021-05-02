@@ -57,19 +57,42 @@ const login = async (req, res = response) => {
 const googleSignIn = async (req = request, res = response) => {
 
     const { id_token } = req.body;
-    const googleUser = await googleVerify(id_token);
 
     try {
+
+        const { name, mail, img } = await googleVerify(id_token);
+
+        let user = await User.findOne({ mail });
+
+        if (!user) {
+            // create user if not exists with google
+            const data = { name, mail, img, password: ':)', google: true };
+            user = new User(data);
+            await user.save();
+        }
+
+        // if user deleted
+        if (!user.status) {
+            return res.status(401).json({
+                msg: 'Hable con el administrador - Usuario bloqueado'
+            });
+        }
+
+        // generate JWT
+        const token = await generateJWT(user.id);
+
         res.json({
             msg: 'login Google SignIn',
-            googleUser,
-            id_token
+            user,
+            token
         });
 
     } catch (error) {
+
         res.status(400).json({
             msg: 'Token de Google no válido'
         });
+
     }
 }
 
