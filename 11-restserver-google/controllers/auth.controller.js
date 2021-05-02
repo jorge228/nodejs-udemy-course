@@ -1,5 +1,5 @@
 // help you with typed
-const { response } = require('express');
+const { response, request } = require('express');
 const bycriptjs = require('bcryptjs');
 
 const User = require('../models/user');
@@ -54,6 +54,17 @@ const login = async (req, res = response) => {
 
 }
 
+const googleSignIn = (req = request, res = response) => {
+
+    const { id_token } = req.body;
+
+    res.json({
+        msg: 'login Google SignIn',
+        id_token
+    });
+}
+
 module.exports = {
-    login
+    login,
+    googleSignIn
 }
