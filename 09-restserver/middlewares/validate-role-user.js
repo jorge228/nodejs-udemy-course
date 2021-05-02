@@ -31,7 +31,8 @@ const hasRole = (...roles) => {
             });
         }
 
-        if (!roles.includes(req.user.rol)) {
+        console.log(req.user);
+        if (!roles.includes(req.user.role)) {
             return res.status(401).json({
                 msg: `El servicio requiere uno de estos roles: ${roles}`
             });
